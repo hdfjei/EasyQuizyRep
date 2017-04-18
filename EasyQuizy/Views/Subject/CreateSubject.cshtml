@@ -1,0 +1,16 @@
+﻿@model EasyQuizy.Models.Subject
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <p> Название предмета <br />
+            @Html.EditorFor(model => model.Name)
+        </p>
+        <p>
+            <input type="submit" value="Добавить" />
+        </p>
+        
+    </fieldset>
+}
+
+

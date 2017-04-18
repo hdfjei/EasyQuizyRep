@@ -1,0 +1,17 @@
+﻿@model  IEnumerable<EasyQuizy.Models.Subject>
+
+@{
+    ViewBag.Title = "Предметы";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+    <p>@item.Name</p>
+    <br />
+}
+
+
+
+
