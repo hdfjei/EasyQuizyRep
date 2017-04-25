@@ -4,13 +4,35 @@
     ViewBag.Title = "Предметы";
 }
 
-<h2>Index</h2>
+<h2>Предметы и категории</h2>
 
-@foreach (var item in Model)
-{
-    <p>@item.Name</p>
-    <br />
-}
+<table>
+    <tr>
+        <th>
+            Название предмета
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @Html.ActionLink("Удалить", "DeleteSubject", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить предмет?');" })
+                |
+                @Html.ActionLink("К списку категорий", "ShowCategories", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div id="addSubject">
+    @Ajax.ActionLink("Добавить предмет", "CreateSubject",
+            new AjaxOptions { UpdateTargetId = "addSubject" })
+</div>
 
 
 
