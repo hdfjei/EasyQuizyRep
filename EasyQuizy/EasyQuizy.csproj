@@ -156,6 +156,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GeneralQuizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
@@ -165,6 +166,10 @@
     <Compile Include="Migrations\201704181659106_InitialCreate.cs" />
     <Compile Include="Migrations\201704181659106_InitialCreate.Designer.cs">
       <DependentUpon>201704181659106_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704251742082_newdb.cs" />
+    <Compile Include="Migrations\201704251742082_newdb.Designer.cs">
+      <DependentUpon>201704251742082_newdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -218,6 +223,9 @@
     <Content Include="Views\Subject\CreateSubject.cshtml" />
     <Content Include="Views\Subject\ShowCategories.cshtml" />
     <Content Include="Views\Subject\CreateCategory.cshtml" />
+    <Content Include="Views\GeneralQuiz\Index.cshtml" />
+    <Content Include="Views\GeneralQuiz\CreateGeneralQuiz.cshtml" />
+    <Content Include="Views\GeneralQuiz\GetCategoriesBySubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -233,6 +241,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704181659106_InitialCreate.resx">
       <DependentUpon>201704181659106_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251742082_newdb.resx">
+      <DependentUpon>201704251742082_newdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

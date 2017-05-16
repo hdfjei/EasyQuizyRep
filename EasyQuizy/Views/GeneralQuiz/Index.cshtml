@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EasyQuizy.Models.GeneralQuiz>
+@{
+    ViewBag.Title = "Тесты";
+}
+
+<h2>Тесты</h2>
+@Html.ActionLink("Добавить тест", "CreateGeneralQuiz")
+<br />
+
+<table>
+    <tr>
+        <th>
+            Название теста
+        </th>
+        <th>
+            Предмет
+        </th>
+        <th>
+            Категория
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Subject.Name
+            </td>
+            <td>
+                @if (@item.Category != null)
+                {
+                     @item.Category.Name
+                }
+                else
+                {
+                    <span>Без категории</span>
+                }
+
+            </td>
+            <td>
+                @Html.ActionLink("Удалить", "DeleteGeneralQuiz", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить тест?');" })
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,52 @@
+﻿@model EasyQuizy.Models.GeneralQuiz
+@{
+    ViewBag.Title = "Создание теста";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>Создание теста</h2>
+    <fieldset>
+        <p>
+            Название теста <br />
+            @Html.EditorFor(model => model.Name)
+        </p>
+        <p>
+            Предмет <br />
+            @Html.DropDownListFor(model => model.SubjectId, ViewBag.Subjects as SelectList, new { id = "subject"})
+        </p>
+        <p>
+            Категория <br />
+            @Html.DropDownListFor(model => model.CategoryId, ViewBag.Categories as SelectList, new { id = "category" })
+        </p>
+        <p>
+            <input type="submit" value="Далее" />
+        </p>
+
+    </fieldset>
+}
+
+@section scripts{
+    <script type="text/javascript">
+    $(function () {
+
+        $('#subject').change(function()
+        {
+            // получаем выбранный id
+            var id = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetCategoriesBySubject")/' + id,
+                success: function (data) {
+
+                    // заменяем содержимое присланным частичным представлением
+                    $('#category').replaceWith(data);
+                }
+            });
+        });
+    })
+    </script>
+}
+
+
+
