@@ -1,20 +1,52 @@
-﻿<ul class="nav">
+﻿<ul class="nav menu">
     <li>
-        @Html.ActionLink("Главная", "Index", "Home")
+        <span>
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            <a href="@Url.Action("Index", "Home")">
+                Главная страница
+            </a>
+        </span>    
     </li>
     <li>
-        @Html.ActionLink("Предметы и категории", "Index", "Subject")
+        <span>
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            <a href="@Url.Action("Index", "Subject")">
+                Предметы и категории
+            </a>
+        </span>
     </li>
     <li>
-        @Html.ActionLink("Тесты", "Index", "GeneralQuiz")
+        <span>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <a href="@Url.Action("Index", "GeneralQuiz")">
+                Тесты
+            </a>
+        </span>
     </li>
     <li>
-        @Html.ActionLink("Группы", "", "")
+        <span>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <a href="@Url.Action("", "")">
+                Группы и тестируемые
+            </a>
+        </span>
     </li>
     <li>
-        @Html.ActionLink("Студенты", "", "")
-    </li>
-    <li>
-        @Html.ActionLink("Сформировать тест", "", "")
+        <span>
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            <a href="@Url.Action("", "")">
+                Сформировать тест
+            </a>
+        </span>
     </li>
 </ul>
+
+<style>
+    a {
+        color: black;
+    }
+    span {
+        padding-bottom: 20px;
+        padding-top: 15px;
+    }
+</style>
