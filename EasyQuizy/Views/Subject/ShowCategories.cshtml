@@ -18,15 +18,15 @@
                 @item.Name
             </td>
             <td>
-                @Html.ActionLink("Удалить", "DeleteCategory", new { id = item.Id },
-                                     new { onclick = "return confirm('Действительно удалить категорию?');" })
+                @Html.ActionLink("X", "DeleteCategory", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить категорию?');", @class = "btn btn-danger btn-xs" })
             </td>
         </tr>
     }
 </table>
 <br />
 <div id="addCategory">
-    @Ajax.ActionLink("Добавить категорию", "CreateCategory",
-            new AjaxOptions { UpdateTargetId = "addCategory" })
+    @Ajax.ActionLink("Добавить категорию", "CreateCategory", null, 
+            new AjaxOptions { UpdateTargetId = "addCategory" }, new { @class = "btn btn-success btn-md" })
 </div>
 
