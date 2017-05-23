@@ -1,0 +1,32 @@
+﻿@model IEnumerable<EasyQuizy.Models.Category>
+
+@{
+    ViewBag.Title = "ShowCategories";
+}
+
+<h2>Категории предмета "@Model.First().Subject.Name"</h2>
+<table>
+    <tr>
+        <th>
+            Название категории
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @Html.ActionLink("Удалить", "DeleteCategory", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить категорию?');" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div id="addCategory">
+    @Ajax.ActionLink("Добавить категорию", "CreateCategory",
+            new AjaxOptions { UpdateTargetId = "addCategory" })
+</div>
+
