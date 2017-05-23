@@ -7,10 +7,10 @@
         <p>
             Название категории <br />
             @Html.EditorFor(model => model.Name)
-            @Html.HiddenFor(model => model.SubjectId)
+            @Html.HiddenFor(model => model.SubjectId) <!--нужно добавить внешний ключ-->
         </p>
         <p>
-            <input type="submit" value="Добавить" />
+            <input type="submit" value="Добавить" class="btn btn-success btn-md" />
         </p>
 
     </fieldset>

@@ -20,18 +20,18 @@
                 @item.Name
             </td>
             <td>
-                @Html.ActionLink("Удалить", "DeleteSubject", new { id = item.Id },
-                                     new { onclick = "return confirm('Действительно удалить предмет?');" })
-                |
-                @Html.ActionLink("К списку категорий", "ShowCategories", new { id = item.Id })
+                @Html.ActionLink("X", "DeleteSubject", new { id = item.Id },
+                          new { onclick = "return confirm('Действительно удалить предмет?');", @class = "btn btn-danger btn-xs" })
+
+                @Html.ActionLink("К списку категорий", "ShowCategories", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
             </td>
         </tr>
     }
 </table>
 <br />
 <div id="addSubject">
-    @Ajax.ActionLink("Добавить предмет", "CreateSubject",
-            new AjaxOptions { UpdateTargetId = "addSubject" })
+    @Ajax.ActionLink("Добавить предмет", "CreateSubject", null,
+            new AjaxOptions() { UpdateTargetId = "addSubject" }, new { @class = "btn btn-success btn-md" })
 </div>
 
 
