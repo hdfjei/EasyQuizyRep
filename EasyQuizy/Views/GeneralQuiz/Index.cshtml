@@ -4,7 +4,7 @@
 }
 
 <h2>Тесты</h2>
-@Html.ActionLink("Добавить тест", "CreateGeneralQuiz")
+@Html.ActionLink("Добавить тест", "CreateGeneralQuiz", null, new { @class = "btn btn-success btn-md"})
 <br />
 
 <table>
@@ -41,8 +41,8 @@
 
             </td>
             <td>
-                @Html.ActionLink("Удалить", "DeleteGeneralQuiz", new { id = item.Id },
-                                     new { onclick = "return confirm('Действительно удалить тест?');" })
+                @Html.ActionLink("X", "DeleteGeneralQuiz", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить тест?');", @class ="btn btn-danger btn-xs" })
             </td>
         </tr>
     }
