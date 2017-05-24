@@ -26,7 +26,7 @@
 </table>
 <br />
 <div id="addCategory">
-    @Ajax.ActionLink("Добавить категорию", "CreateCategory", null, 
+    @Ajax.ActionLink("Добавить категорию", "CreateCategory", new { id = ViewBag.SubjectId },
             new AjaxOptions { UpdateTargetId = "addCategory" }, new { @class = "btn btn-success btn-md" })
 </div>
 

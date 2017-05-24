@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<EasyQuizy.Models.Category>
 <select id="category" name="Category">
-    <option value="0">Нет</option>
     @foreach (var item in Model)
     {
         <option value="@item.Id"> @item.Name</option>

@@ -49,6 +49,7 @@ namespace EasyQuizy.Controllers
         public ActionResult ShowCategories(int id)
         {
             var categories = db.Categories.Where(c => c.Subject.Id == id).Include(c=>c.Subject);
+            ViewBag.SubjectId = id;
             return View(categories.ToList());
         }
         public ActionResult DeleteCategory(int id)
@@ -65,9 +66,10 @@ namespace EasyQuizy.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult CreateCategory()
+        public ActionResult CreateCategory(int id)
         {
-            return PartialView();
+            Category category = new Category() { SubjectId = id };
+            return PartialView(category);
         }
         [HttpPost]
         public ActionResult CreateCategory(Category category)
@@ -75,7 +77,7 @@ namespace EasyQuizy.Controllers
             db.Categories.Add(category);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ShowCategories", new { id = category.SubjectId });
         }
     }
 }

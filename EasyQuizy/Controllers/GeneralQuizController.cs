@@ -38,7 +38,12 @@ namespace EasyQuizy.Controllers
             db.GeneralQuizes.Add(generalQuiz);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("CreateQuestion", generalQuiz.Id);
+        }
+        [HttpGet]
+        public ActionResult CreateQuestion(int id)
+        {
+            return View(id);
         }
 
         public ActionResult DeleteGeneralQuiz(int id)
