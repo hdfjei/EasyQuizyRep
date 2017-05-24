@@ -38,9 +38,8 @@ namespace EasyQuizy.Controllers
             db.GeneralQuizes.Add(generalQuiz);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("CreateQuestion", new { id = generalQuiz.Id });
         }
-
         public ActionResult DeleteGeneralQuiz(int id)
         {
             GeneralQuiz generalQuiz = db.GeneralQuizes.Find(id);
@@ -53,6 +52,51 @@ namespace EasyQuizy.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult CreateQuestion(int id)
+        {
+            Question question = new Question() { GeneralQuizId = id };
+            return View(question);
+        }
+        [HttpPost]
+        public ActionResult CreateQuestion(Question question, HttpPostedFileBase image = null)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    question.ImageMimeType = image.ContentType;
+                    question.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(question.ImageData, 0, image.ContentLength);
+                }
+                db.Questions.Add(question);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(question);
+            }
+        }
+        //[HttpGet]
+        //public PartialViewResult CreateAnswers(int questinId)
+        //{
+            
+        //}
+        public FileContentResult GetImage(int questionId)
+        {
+            Question question = db.Questions.FirstOrDefault(q => q.Id == questionId);
+
+            if (question != null)
+            {
+                return File(question.ImageData, question.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
