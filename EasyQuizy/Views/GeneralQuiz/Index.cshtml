@@ -41,7 +41,7 @@
 
             </td>
             <td>
-                @Html.ActionLink("[", "DeleteGeneralQuiz", new { id = item.Id },
+                @Html.ActionLink("Удалить", "DeleteGeneralQuiz", new { id = item.Id },
                                      new { onclick = "return confirm('Действительно удалить тест?');", @class ="btn btn-danger btn-xs" })
             </td>
         </tr>

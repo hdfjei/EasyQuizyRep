@@ -1,0 +1,41 @@
+﻿@model EasyQuizy.Models.Question
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <p>
+            <div id="answersBlock">
+                <div class="answer">
+                    <p>Вариант ответа № 1</p>
+                    <div>
+                        <div>
+                            <input type="text" name="Answers[0].name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p>
+        <p><a class="addLink">Добавить новый элемент</a></p>
+        <p>
+            <input type="submit" value="Добавить" class="btn btn-success btn-md" />
+        </p>
+
+    </fieldset>
+}
+@section Scripts {
+    <script>
+       $(function () {
+           var i = 0;
+           $('.addLink').click(function()
+           {
+               i++;
+               var html2Add= "<div class='answer'>"+
+            "<p>Вариант ответа № "+(i+1) + "</p>"+
+                    "<input type='text' name='Answers["+i+"].name' />"+
+                "</div></div></div>";
+               $('#answersBlock').append(html2Add);
+           })
+       })
+    </script>
+}

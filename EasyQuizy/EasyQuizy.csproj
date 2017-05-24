@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201704251742082_newdb.Designer.cs">
       <DependentUpon>201704251742082_newdb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705240819049_add_images.cs" />
+    <Compile Include="Migrations\201705240819049_add_images.Designer.cs">
+      <DependentUpon>201705240819049_add_images.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Category.cs" />
@@ -226,6 +230,8 @@
     <Content Include="Views\GeneralQuiz\Index.cshtml" />
     <Content Include="Views\GeneralQuiz\CreateGeneralQuiz.cshtml" />
     <Content Include="Views\GeneralQuiz\GetCategoriesBySubject.cshtml" />
+    <Content Include="Views\GeneralQuiz\CreateQuestion.cshtml" />
+    <Content Include="Views\GeneralQuiz\CreateAnswers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704251742082_newdb.resx">
       <DependentUpon>201704251742082_newdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705240819049_add_images.resx">
+      <DependentUpon>201705240819049_add_images.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
