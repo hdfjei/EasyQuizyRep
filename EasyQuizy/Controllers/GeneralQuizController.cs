@@ -72,19 +72,14 @@ namespace EasyQuizy.Controllers
                 }
                 db.Questions.Add(question);
                 db.SaveChanges();
-
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("CreateQuestion", new { id = question.GeneralQuizId });
             }
             else
             {
                 return View(question);
             }
         }
-        //[HttpGet]
-        //public PartialViewResult CreateAnswers(int questinId)
-        //{
-            
-        //}
         public FileContentResult GetImage(int questionId)
         {
             Question question = db.Questions.FirstOrDefault(q => q.Id == questionId);
@@ -96,6 +91,25 @@ namespace EasyQuizy.Controllers
             else
             {
                 return null;
+            }
+        }
+        public ActionResult ShowGeneralQuiz(int id)
+        {
+            var questions = db.Questions.Where(q => q.GeneralQuizId == id).Include(q => q.Answers);
+            ViewBag.GeneralQuiz = db.GeneralQuizes.Where(qg => qg.Id == id).First().Name;
+            return View(questions.ToList());
+        }
+        [HttpGet]
+        public ActionResult EditQuestion(int id)
+        {
+            Question question = db.Questions.Find(id);
+            if (question != null)
+            {
+                return View(question);
+            }
+            else
+            {
+                return RedirectToAction("Index");
             }
         }
     }

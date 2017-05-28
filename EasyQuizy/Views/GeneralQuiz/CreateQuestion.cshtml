@@ -5,50 +5,69 @@
 }
 
 @using (Html.BeginForm("CreateQuestion", "GeneralQuiz",
-        FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <fieldset>
+
         <h2>Добавление вопросов</h2>
-        <div>@Html.HiddenFor(m=>m.GeneralQuizId)</div>
-
-        <p>
-            Вопрос <br />
-            @Html.TextAreaFor(model => model.Content)
-        </p>
-
-        @*Загрузка и отображение картинки*@
-        <div class="form-group">
-            <div style="position:relative;">
-                <label>Картинка</label>
-                <a class='btn' href='javascript:;'>
-                    Выберите файл...
-                    <input type="file" name="Image" size="40"
-                           style="position:absolute;z-index:2;top:0;
+        <div>@Html.HiddenFor(m => m.GeneralQuizId)</div>
+        @Html.AntiForgeryToken()
+        <div class="questionBlock">
+            <p>
+                Вопрос <br />
+                @Html.TextAreaFor(model => model.Content, new { rows = "4", cols = "100" })
+            </p>
+            @*Загрузка картинки*@
+            <div class="form-group">
+                <div style="position:relative;">
+                    <label>Картинка</label>
+                    <a class='btn' href='javascript:;'>
+                        Выберите файл...
+                        <input type="file" name="Image" size="40"
+                               style="position:absolute;z-index:2;top:0;
                                 left:0;filter: alpha(opacity=0); opacity:0;
                                 background-color:transparent;color:transparent;"
-                           onchange='$("#upload-file-info").html($(this).val());'>
-                </a>
-                <span class='label label-info' id="upload-file-info"></span>
+                               onchange='$("#upload-file-info-question").html($(this).val());'>
+                    </a>
+                    <span class='label label-primary' id="upload-file-info-question"></span>
+                </div>
             </div>
-            @if (Model.ImageData == null)
-                {
-                <div class="form-control-static">Нет картинки</div>
-            }
-            else
-            {
-                <img class="img-thumbnail" width="150" height="150"
-                     src="@Url.Action("GetImage", "GeneralQuiz",
-                        new { Model.Id })" />
-            }
         </div>
-
-        @*@Html.Partial("CreateAnswers", new { id = Model.Id })*@
-
-        <div>
-            <input type="submit" value="Сохранить" class="btn btn-primary btn-md" />
-        </div>
-
-
-
-        </fieldset>   
+        <p>
+            <div id="answersBlock">
+                <div>
+                    <div>Вариант ответа № 1</div>
+                    <div>
+                        <div>
+                            <input type="text" name="Answers[0].content" style="width:300px; height:80px"/>
+                        </div>
+                        <div>
+                            <label for="isTrue1">Правильный</label>
+                            <input id="isTrue1" type="checkbox" name="Answers[0].isTrue" value="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p>
+        <p><a class="addLink btn-primary btn-sm">Добавить ответ</a></p>
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-success btn-md" />
+            @Html.ActionLink("Завершить добавление","Index",null, new { @class = "btn btn-success btn-md"})
+        </p>   
+}
+@section Scripts {
+    <script>
+       $(function () {
+           var i = 0;
+           $('.addLink').click(function()
+           {
+               i++;
+               var html2Add= "<div>"+
+            "<div>Вариант ответа № "+(i+1) + "</div>"+
+                    "<div><input type='text' name='Answers[" + i + "].content' style='width:300px; height:80px' /></div>" +
+                    "<div><label for='isTrue" + i + "'>Правильный</label><input id='isTrue" + i + "' type='checkbox' name='Answers[" + i + "].isTrue' value='true' /></div>" +
+                    "</div>";
+               $('#answersBlock').append(html2Add);
+           })
+       })
+    </script>
 }

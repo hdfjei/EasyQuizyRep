@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EasyQuizy.Models.Question>
+
+@{
+    ViewBag.Title = "Просмотр теста";
+}
+<h2>Просмотр теста @ViewBag.GeneralQuiz</h2>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.Content</th>
+            @*<th>@Html.ActionLink("Редактировать", "EditQuestion", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })</th>*@
+        </tr>
+        <tr>
+            <td>
+                @if (item.ImageData != null)
+                {
+                    <img class="img-thumbnail" width="150" height="150"
+                         src="@Url.Action("GetImage", "GeneralQuizController",
+                        new { item.Id })" />
+                }
+            </td>
+        </tr>
+        foreach (var answer in item.Answers)
+        {
+            <tr class="form-group">
+                <td>@answer.Content</td>
+                <td>
+                    @if (answer.IsTrue)
+                    {
+                        <div>Верный</div>
+                    }
+                    else
+                    {
+                        <div>Неверный</div>
+                    }
+                </td>
+            </tr>
+            <tr style="empty-cells:show"> </tr>
+        }
+        
+    }
+    </table>
+<div>
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Добавить вопрос", "CreateQuestion", new { id = Model.First().GeneralQuizId}, new { @class = "btn btn-primary btn-sm" })
+</div>
+
+
+
