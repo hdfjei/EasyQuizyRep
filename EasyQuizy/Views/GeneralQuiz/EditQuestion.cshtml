@@ -1,0 +1,22 @@
+﻿@model EasyQuizy.Models.Question
+
+@{
+    ViewBag.Title = "Редактирование вопроса";
+}
+
+<h2>Редактирование вопроса</h2>
+
+@using (Html.BeginForm())
+    { 
+    <fieldset>
+        @Html.HiddenFor(q=>q.Id)
+        
+        @Html.EditorFor(q=>q.Content)
+
+        @foreach (var answer in Model.Answers)
+        {
+            @Html.Editor(answer.Content)
+            @Html.CheckBox("Верный",answer.IsTrue)
+        }
+    </fieldset>
+    }
