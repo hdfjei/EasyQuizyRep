@@ -231,7 +231,8 @@
     <Content Include="Views\GeneralQuiz\CreateGeneralQuiz.cshtml" />
     <Content Include="Views\GeneralQuiz\GetCategoriesBySubject.cshtml" />
     <Content Include="Views\GeneralQuiz\CreateQuestion.cshtml" />
-    <Content Include="Views\GeneralQuiz\CreateAnswers.cshtml" />
+    <Content Include="Views\GeneralQuiz\ShowGeneralQuiz.cshtml" />
+    <Content Include="Views\GeneralQuiz\EditQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
