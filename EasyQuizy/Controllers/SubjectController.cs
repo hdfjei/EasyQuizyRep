@@ -48,8 +48,9 @@ namespace EasyQuizy.Controllers
         //Работа с категориями
         public ActionResult ShowCategories(int id)
         {
-            var categories = db.Categories.Where(c => c.Subject.Id == id).Include(c=>c.Subject);
+            var categories = db.Categories.Where(c => c.Subject.Id == id);
             ViewBag.SubjectId = id;
+            ViewBag.Subject = db.Subjects.Where(s => s.Id == id).First().Name;
             return View(categories.ToList());
         }
         public ActionResult DeleteCategory(int id)
