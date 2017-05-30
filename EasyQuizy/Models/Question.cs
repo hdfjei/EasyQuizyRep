@@ -13,10 +13,11 @@ namespace EasyQuizy.Models
         public GeneralQuiz GeneralQuiz { get; set; }
 
         public ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<FormedQuiz> FormedQuizes { get; set; }
         public Question()
         {
             Answers = new List<Answer>();
+            FormedQuizes = new List<FormedQuiz>();
         }
-
     }
 }
