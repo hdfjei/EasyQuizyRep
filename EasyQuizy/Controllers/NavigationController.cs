@@ -13,5 +13,10 @@ namespace EasyQuizy.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Help()
+        {
+            return View();
+        }
     }
 }

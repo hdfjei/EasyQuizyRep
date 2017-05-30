@@ -233,6 +233,7 @@
     <Content Include="Views\GeneralQuiz\CreateQuestion.cshtml" />
     <Content Include="Views\GeneralQuiz\ShowGeneralQuiz.cshtml" />
     <Content Include="Views\GeneralQuiz\EditQuestion.cshtml" />
+    <Content Include="Views\Navigation\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
