@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace EasyQuizy.Models.FormedQuizLogic
 {
+    public enum GenerationType { One, Two }
     public class FormedQuizMaker
     {
         QuizContext db = new QuizContext();
@@ -55,16 +55,17 @@ namespace EasyQuizy.Models.FormedQuizLogic
             }
             return temp.ToArray();
         }
-        public List<Question> GetQuestionsList(int[] choosenQuizes)
+        private List<Question> GetQuestionsList(int[] choosenQuizes)
         {
             List<Question> result = new List<Question>();
             foreach (var item in choosenQuizes)
             {
-                result.AddRange(db.Questions.Where(q => q.GeneralQuizId == item));
+                result.AddRange(db.Questions.Where(q => q.GeneralQuizId == item).Include(q=>q.Answers));
             }
+            db.Dispose();
             return result;
         }
-        public List<Question>[] FormQuizes()
+        public List<Question>[] FormQuizes(GenerationType type)
         {
             int[] choosenQuizes = FindChoosenQuizes();
             if (choosenQuizes != null)
@@ -74,18 +75,16 @@ namespace EasyQuizy.Models.FormedQuizLogic
                 List<Question>[] questionsByVariants = new List<Question>[variantsNumber];
                 questionsByVariants = QuestionByVariantsInitizlizer(questionsByVariants);
 
-                int counter = 0;
-                for (int i = 0; i < questionsNumber; i++)
+                switch (type)
                 {
-                    for (int j = 0; j < variantsNumber; j++)
-                    {
-                        if (counter == allQuestions.Count)
-                        {
-                            counter = 1;
-                        }
-                        questionsByVariants[j].Add(allQuestions[counter]);
-                        counter++;
-                    }
+                    case GenerationType.One:
+                        GenerateQuizByTypeOne(allQuestions, ref questionsByVariants);
+                        break;
+                    case GenerationType.Two:
+                        GenerateQuizByTypeTwo(allQuestions, ref questionsByVariants);
+                        break;
+                    default:
+                        break;
                 }
                 return questionsByVariants;
             }
@@ -101,6 +100,56 @@ namespace EasyQuizy.Models.FormedQuizLogic
                 questionsByVariants[i] = new List<Question>();
             }
             return questionsByVariants;
+        }
+        private void GenerateQuizByTypeOne(List<Question> allQuestions, ref List<Question>[] questionsByVariants)
+        {
+            int counter = 0;
+            for (int i = 0; i < questionsNumber; i++)
+            {
+                for (int j = 0; j < variantsNumber; j++)
+                {
+                    if (counter == allQuestions.Count)
+                    {
+                        counter = 1;
+                    }
+                    questionsByVariants[j].Add(allQuestions[counter]);
+                    counter++;
+                }
+            }
+        }
+        private void GenerateQuizByTypeTwo(List<Question> allQuestions, ref List<Question>[] questionsByVariants)
+        {
+            int selection = allQuestions.Count / variantsNumber;
+
+            int currentPosition = 0;
+            int currentStep = 0;
+            int currentVariant = 0;
+            int initialVariant = 0;
+            for (int i = 0; i < questionsNumber; i++)
+            {
+                currentVariant = initialVariant;
+                currentStep = 0;
+                for (int j = 0; j < variantsNumber; j++)
+                {
+                    questionsByVariants[currentVariant].Add(allQuestions[currentPosition + currentStep]);
+                    currentStep += selection;
+                    currentVariant++;
+                    if (currentVariant == variantsNumber)
+                    {
+                        currentVariant = 0;
+                    }
+                    if (currentPosition == selection)
+                    {
+                        currentPosition = 1;
+                    }
+                }
+                initialVariant++;
+                if (initialVariant == variantsNumber)
+                {
+                    initialVariant = 0;
+                }               
+                currentPosition++;
+            }
         }
     }
 }
