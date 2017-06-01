@@ -156,6 +156,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FormedQuizController.cs" />
     <Compile Include="Controllers\GeneralQuizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -175,13 +176,20 @@
     <Compile Include="Migrations\201705240819049_add_images.Designer.cs">
       <DependentUpon>201705240819049_add_images.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705300907256_add_formedQuiz_manytomany_with_questions.cs" />
+    <Compile Include="Migrations\201705300907256_add_formedQuiz_manytomany_with_questions.Designer.cs">
+      <DependentUpon>201705300907256_add_formedQuiz_manytomany_with_questions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\FormedQuiz.cs" />
+    <Compile Include="Models\FormedQuizLogic\FormedQuizMaker.cs" />
     <Compile Include="Models\GeneralQuiz.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuizContext.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\ViewModels\QuizListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +241,7 @@
     <Content Include="Views\GeneralQuiz\CreateQuestion.cshtml" />
     <Content Include="Views\GeneralQuiz\ShowGeneralQuiz.cshtml" />
     <Content Include="Views\GeneralQuiz\EditQuestion.cshtml" />
-    <Content Include="Views\Navigation\Help.cshtml" />
+    <Content Include="Views\FormedQuiz\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705240819049_add_images.resx">
       <DependentUpon>201705240819049_add_images.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705300907256_add_formedQuiz_manytomany_with_questions.resx">
+      <DependentUpon>201705300907256_add_formedQuiz_manytomany_with_questions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

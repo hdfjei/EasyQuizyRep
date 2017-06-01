@@ -23,7 +23,9 @@ namespace EasyQuizy.Controllers
         {
             int selectedIndex = 1;
             var subjects = new SelectList(db.Subjects, "Id", "Name");
-            var categories = new SelectList(db.Categories.Where(c => c.SubjectId == selectedIndex), "Id", "Name");
+            List<Category> categoriesList = db.Categories.Where(c => c.SubjectId == selectedIndex).ToList();
+            categoriesList.Insert(0, new Category { Id = 0, Name = "Без категории" });
+            var categories = new SelectList(categoriesList, "Id", "Name");
             ViewBag.Subjects = subjects;
             ViewBag.Categories = categories;
             return View();
