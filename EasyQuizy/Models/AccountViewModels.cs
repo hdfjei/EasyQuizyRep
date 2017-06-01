@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Authentification.Models
+namespace EasyQuizy.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

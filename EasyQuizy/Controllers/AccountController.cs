@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Authentification.Models;
+using EasyQuizy.Models;
 
-namespace Authentification.Controllers
+namespace EasyQuizy.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -79,7 +79,7 @@ namespace Authentification.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

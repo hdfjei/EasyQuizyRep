@@ -3,11 +3,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using Authentification.Models;
+using EasyQuizy.Models;
 
-namespace Authentification
+namespace EasyQuizy
 {
     public partial class Startup
     {

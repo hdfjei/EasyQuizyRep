@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Authentification.Models;
+using EasyQuizy.Models;
 
-namespace Authentification
+namespace EasyQuizy
 {
     public class EmailService : IIdentityMessageService
     {

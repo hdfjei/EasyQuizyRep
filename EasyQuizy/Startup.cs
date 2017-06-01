@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Authentification.Startup))]
-namespace Authentification
+[assembly: OwinStartupAttribute(typeof(EasyQuizy.Startup))]
+namespace EasyQuizy
 {
     public partial class Startup
     {

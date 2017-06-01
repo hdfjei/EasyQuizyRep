@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Authentification.Models;
+using EasyQuizy.Models;
 
-namespace Authentification.Controllers
+namespace EasyQuizy.Controllers
 {
     [Authorize]
     public class ManageController : Controller

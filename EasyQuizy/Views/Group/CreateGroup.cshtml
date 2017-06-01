@@ -1,13 +1,11 @@
-﻿
-@model EasyQuizy.Models.Category
+﻿@model EasyQuizy.Models.Group
 
 @using (Html.BeginForm())
 {
     <fieldset>
         <p>
-            Название категории <br />
+            Название группы <br />
             @Html.EditorFor(model => model.Name)
-            @Html.HiddenFor(model => model.SubjectId)
         </p>
         <p>
             <input type="submit" value="Добавить" class="btn btn-success btn-md" />

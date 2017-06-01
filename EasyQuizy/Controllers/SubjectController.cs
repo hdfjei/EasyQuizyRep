@@ -55,6 +55,8 @@ namespace EasyQuizy.Controllers
         }
         public ActionResult DeleteCategory(int id)
         {
+            //int subjectId = db.Categories.
+
             Category category = db.Categories.Find(id);
             if (category == null)
             {

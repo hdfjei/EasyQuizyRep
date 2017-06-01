@@ -10,5 +10,7 @@ namespace EasyQuizy.Models
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<FormedQuiz> FormedQuizes { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

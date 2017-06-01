@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EasyQuizy.Models.Student>
+
+@{
+    ViewBag.Title = "Список тестируемых";
+}
+
+<h2>Тестируемые группы "@ViewBag.Group"</h2>
+<table>
+    <tr>
+        <th>
+            Фамилия
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Отчество
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.MiddleName
+            </td>
+            <td>
+                @Html.ActionLink("X", "DeleteStudent", new { id = item.Id },
+                                     new { onclick = "return confirm('Действительно удалить тестируемого?');", @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div id="addStudent">
+    @Ajax.ActionLink("Добавить тестируемого", "CreateStudent", new { id = ViewBag.GroupId },
+            new AjaxOptions { UpdateTargetId = "addStudent" }, new { @class = "btn btn-success btn-md" })
+</div>
+
