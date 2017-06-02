@@ -1,0 +1,26 @@
+﻿@model EasyQuizy.Models.ViewModels.ChartViewModel
+
+@{
+    ViewBag.Title = "Статистика";
+}
+
+<form method="post">
+    <h2>Выберите тест и группу</h2>
+    <fieldset>
+        <p>
+            Тест <br />
+            @Html.DropDownList("FormedQuiz", Model.FormedQuizes as SelectList, new { id = "formedQuiz", @class = "form-control" })
+        </p>
+        <p>
+            Группа <br />
+            @Html.DropDownList("Group", Model.Groups as SelectList, new { id = "group", @class = "form-control" })
+        </p>
+        <p>
+            <input type="submit" value="Показать график" class="btn btn-success btn-md" />
+        </p>
+    </fieldset>
+</form>
+
+
+
+ 

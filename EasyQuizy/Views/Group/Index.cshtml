@@ -1,0 +1,39 @@
+﻿@model  IEnumerable<EasyQuizy.Models.Group>
+
+@{
+    ViewBag.Title = "Группы";
+}
+
+<h2>Группы и тестируемые</h2>
+
+<table>
+    <tr>
+        <th>
+            Название группы
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @Html.ActionLink("X", "DeleteGroup", new { id = item.Id },
+                          new { onclick = "return confirm('Действительно удалить группу?');", @class = "btn btn-danger btn-xs" })
+
+                @Html.ActionLink("К списку тестируемых", "ShowStudents", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div id="addGroup">
+    @Ajax.ActionLink("Добавить группу", "CreateGroup", null,
+            new AjaxOptions() { UpdateTargetId = "addGroup" }, new { @class = "btn btn-success btn-md" })
+</div>
+
+
+
+
