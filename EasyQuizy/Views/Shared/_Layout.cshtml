@@ -10,18 +10,18 @@
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
     <title>@ViewBag.Title</title>
 </head>
-<body style="background-color:#FFFFFF">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <h2 style="color:#C0C0C0"> EasyQuizy </h2>
+                <h2 style="color:black"> EasyQuizy </h2>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         <span>
-                            <span style="color:#C0C0C0" class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                            <a style="color:#C0C0C0" href="@Url.Action("Help", "Navigation")">
+                            <span style="color:black" class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            <a style="color:black" href="@Url.Action("Help", "Navigation")">
                                 Помощь
                             </a>
                         </span>
@@ -30,16 +30,16 @@
             </div>
         </div>
     </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div id="menu" class="col-sm-3 col-md-2 sidebar" style="background-color:#C0C0C0">
-                            @Html.Action("Menu", "Navigation")
-                        </div>
-                        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background-color:#FFFFFF">
-                            @RenderBody()
-                            @RenderSection("scripts", required: false)
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="row">
+        <div id="menu" class="col-sm-3 col-md-2 sidebar" style="background-color:#C0C0C0">
+            @Html.Action("Menu", "Navigation")
+        </div>
+        <div class="col-sm-1 col-sm-offset-1 col-md-10 col-md-offset-2 main sidebar" style="background-color:#EFF4DC">
+            @RenderBody()
+            @RenderSection("scripts", required: false)
+         </div>
+    </div>
+</div>
 </body>
 </html>

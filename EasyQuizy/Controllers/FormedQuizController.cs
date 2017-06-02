@@ -48,8 +48,17 @@ namespace EasyQuizy.Controllers
 
             for (int i = 0; i < qlvm.VariantsNumber; i++)
             {
-
+                FormedQuiz fq = new FormedQuiz
+                {
+                    Name = $"{qlvm.FormedQuizName}Variant{i + 1}",
+                    Questions = temp[i],
+                    VariantsNumber = qlvm.VariantsNumber,
+                    QuestionsNumber = qlvm.QuestionsNumber,
+                    GenerationType = $"type1"
+                };
+                db.FormedQuizes.Add(fq);
             }
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
