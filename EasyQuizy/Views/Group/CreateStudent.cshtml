@@ -1,0 +1,26 @@
+﻿
+@model EasyQuizy.Models.Student
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        @Html.HiddenFor(model => model.GroupId)
+        <p>
+            Фамилия <br />
+            @Html.EditorFor(model => model.LastName)
+        </p>
+        <p>
+            Имя <br />
+            @Html.EditorFor(model => model.FirstName)
+        </p>
+        <p>
+            Отчество <br />
+            @Html.EditorFor(model => model.MiddleName)
+        </p>
+        <p>
+            <input type="submit" value="Добавить" class="btn btn-success btn-md" />
+        </p>
+    </fieldset>
+}
+
+

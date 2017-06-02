@@ -1,0 +1,49 @@
+﻿@model EasyQuizy.Models.ViewModels.ChartViewModel
+
+@{
+    ViewBag.Title = "Статистика";
+}
+
+@{
+    var myChart = new Chart(width: 800, height: 600)
+        .AddTitle("Статистика")
+        .AddSeries(
+            name: "Employee",
+            xValue: Model.Names.ToArray(),
+            yValues: Model.Results.ToArray())
+        .Write();
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'ФИО');
+        data.addColumn('number', 'Результат');
+        $.getJSON('@Url.Action("GetProducts", "Home")', null,
+                                                        function (result) {
+                                                            if (result.Countries.length) {
+                                                                $.each(result.Countries, function (index, c) {
+                                                                    data.addRow(
+                                                                        [c.Name, c.Value]
+                                                                    );
+                                                                });
+                                                                var options = {
+                                                                    title: 'График тип',
+                                                                    hAxis: { title: 'ФИО', titleTextStyle: { color: 'red'} }
+                                                                };
+
+                                                                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                                                                chart.draw(data, options);
+                                                            }
+                                                        }
+        }
+</script>
+
+<div id="chart_div"></div>
